@@ -1,0 +1,233 @@
+BasisDirectory[g1] = StringDrop[DirectoryName[$Input], -1]
+g1 /: BasisSectors[g1] := {js[g1, 1, 1, 0, 1, 0], js[g1, 1, 1, 0, 1, 1], 
+   js[g1, 1, 1, 1, 1, 0]}
+g1 /: CurrentState[g1] := <|NewDsBasis -> True, GenerateIBP -> True, 
+   AnalyzeSectors -> True, FindSymmetries -> False|>
+g1 /: CutDs[g1] := {1, 1, 0, 1, 0}
+g1 /: Definitions[g1] := {Hold[MetricTensor[] === d, SetDim[d]], 
+   Hold[VecQ[l1], Declare[l1, Vector]], Hold[VecQ[p3], Declare[p3, Vector]], 
+   Hold[VecQ[q1], Declare[q1, Vector]], Hold[VecQ[v1], Declare[v1, Vector]], 
+   Hold[VecQ[v2], Declare[v2, Vector]], Hold[TypeOf[p3] === Vector, 
+    Declare[p3, Vector]], Hold[TypeOf[q1] === Vector, Declare[q1, Vector]], 
+   Hold[TypeOf[q11] === Number, Declare[q11, Number]], 
+   Hold[TypeOf[q1p3] === Number, Declare[q1p3, Number]], 
+   Hold[TypeOf[v1] === Vector, Declare[v1, Vector]], 
+   Hold[TypeOf[v2] === Vector, Declare[v2, Vector]], 
+   Hold[TypeOf[x1] === Number, Declare[x1, Number]], 
+   Hold[TypeOf[x2] === Number, Declare[x2, Number]], 
+   Hold[TypeOf[y] === Number, Declare[y, Number]], 
+   Hold[sp[p3, p3] === 0, sp[p3, p3] = 0], Hold[sp[q1, q1] === q11, 
+    sp[q1, q1] = q11], Hold[sp[v1, v1] === 1, sp[v1, v1] = 1], 
+   Hold[sp[v2, v2] === 1, sp[v2, v2] = 1], Hold[sp[p3, q1] === q1p3, 
+    sp[p3, q1] = q1p3], Hold[sp[p3, v1] === x1, sp[p3, v1] = x1], 
+   Hold[sp[p3, v2] === x2, sp[p3, v2] = x2], Hold[sp[q1, v1] === 0, 
+    sp[q1, v1] = 0], Hold[sp[q1, v2] === x2, sp[q1, v2] = x2], 
+   Hold[sp[v1, v2] === y, sp[v1, v2] = y]}
+g1 /: Ds[g1] := {sp[l1, l1], sp[l1, v1], sp[l1, v2], q11 + 2*sp[l1, q1], 
+   q11 - 2*q1p3 + sp[l1, l1] - 2*sp[l1, p3] + 2*sp[l1, q1]}
+g1 /: DsBasisQ[g1] := True
+g1 /: EMs[g1] := {p3, q1, v1, v2}
+g1 /: ExtMappedSectors[g1] := {}
+g1 /: ExtSectorsMappings[g1] := {}
+g1 /: IBP[g1] := {-(#5*j[g1, -1 + #1, #2, #3, #4, 1 + #5]) + 
+     (d - 2*#1 - #2 - #3 - #4 - #5)*j[g1, #1, #2, #3, #4, #5] + 
+     #5*(q11 - 2*q1p3)*j[g1, #1, #2, #3, #4, 1 + #5] + 
+     #4*q11*j[g1, #1, #2, #3, 1 + #4, #5], 
+    -(#5*j[g1, -1 + #1, #2, #3, #4, 1 + #5]) - 
+     #5*j[g1, #1, #2, #3, -1 + #4, 1 + #5] + 
+     (-#1 + #5)*j[g1, #1, #2, #3, #4, #5] - 
+     2*#4*q1p3*j[g1, #1, #2, #3, 1 + #4, #5] - 
+     #3*x2*j[g1, #1, #2, 1 + #3, #4, #5] - 
+     #2*x1*j[g1, #1, 1 + #2, #3, #4, #5] - 
+     #1*j[g1, 1 + #1, #2, #3, -1 + #4, #5] + 
+     #1*j[g1, 1 + #1, #2, #3, #4, -1 + #5] + 
+     2*#1*q1p3*j[g1, 1 + #1, #2, #3, #4, #5], 
+    -(#5*j[g1, #1, #2, #3, -1 + #4, 1 + #5]) - #5*(q11 - 2*q1p3)*
+      j[g1, #1, #2, #3, #4, 1 + #5] - 2*#4*q11*j[g1, #1, #2, #3, 1 + #4, 
+       #5] - #3*x2*j[g1, #1, #2, 1 + #3, #4, #5] - 
+     #1*j[g1, 1 + #1, #2, #3, -1 + #4, #5] + 
+     #1*q11*j[g1, 1 + #1, #2, #3, #4, #5], 
+    -2*#5*j[g1, #1, -1 + #2, #3, #4, 1 + #5] + 
+     2*#5*x1*j[g1, #1, #2, #3, #4, 1 + #5] - 
+     #3*y*j[g1, #1, #2, 1 + #3, #4, #5] - #2*j[g1, #1, 1 + #2, #3, #4, #5] - 
+     2*#1*j[g1, 1 + #1, -1 + #2, #3, #4, #5], 
+    -2*#5*j[g1, #1, #2, -1 + #3, #4, 1 + #5] - 
+     2*#4*x2*j[g1, #1, #2, #3, 1 + #4, #5] - 
+     #3*j[g1, #1, #2, 1 + #3, #4, #5] - #2*y*j[g1, #1, 1 + #2, #3, #4, #5] - 
+     2*#1*j[g1, 1 + #1, #2, -1 + #3, #4, #5]} & 
+g1 /: Information[g1] := (If[ValueQ[g1::usage], 
+    Information[g1, LongForm -> False]]; 
+   Print[Grid[Partition[Union[Replace[Replace[First /@ UpValues[g1] /. 
+          HoldPattern -> HoldForm, 
+         {HoldPattern[HoldForm[(LiteRed`Private`f$_)[g1, __]]] :> 
+           HoldForm[LiteRed`Private`f$[g1, "\[Ellipsis]"]]}, {1}], 
+        {HoldPattern[LiteRed`Private`x$:HoldForm[(LiteRed`Private`f$_)[g1, 
+              ___]]] :> Button[LiteRed`Private`x$, 
+           (SelectionMove[ButtonNotebook[], All, GeneratedCell]; 
+             NotebookDelete[]; Information[Evaluate[LiteRed`Private`x$[[1,
+                0]]], LongForm -> False]; Print[TableForm[Cases[UpValues[g1], 
+                 HoldPattern[LiteRed`Private`a$_ :> LiteRed`Private`b$_] /; 
+                  MatchQ[LiteRed`Private`a$[[1,0]], LiteRed`Private`x$[[1,
+                    0]]]] /. HoldPattern -> HoldForm]]) & , 
+           Appearance -> "Frameless", BaseStyle -> "InformationLink"]}, 
+        {1}]], 5], DefaultBaseStyle -> "InfoGrid"]])
+g1 /: jRules[g1, 1, 1, 0, 1, 0] := Get[StringJoin[BasisDirectory[g1], 
+    "/jRules[g1, 1, 1, 0, 1, 0]"]]
+g1 /: jRules[g1, 1, 1, 0, 1, 1] := Get[StringJoin[BasisDirectory[g1], 
+    "/jRules[g1, 1, 1, 0, 1, 1]"]]
+g1 /: jRules[g1, 1, 1, 1, 1, 0] := Get[StringJoin[BasisDirectory[g1], 
+    "/jRules[g1, 1, 1, 1, 1, 0]"]]
+g1 /: jRules[g1, 1, 1, 1, 1, 1] := Get[StringJoin[BasisDirectory[g1], 
+    "/jRules[g1, 1, 1, 1, 1, 1]"]]
+g1 /: jsOrder[g1] := {"np", "cp", "-ds", "-ns"}
+g1 /: jsOrder[g1, 0, 1, 0, 1, 0] := {{-1, 1, -1, 1, -1}, {-1, 0, -1, 0, -1}, 
+   {0, -1, 0, 0, 0}, {1, 0, 0, 0, 0}, {0, 0, 1, 0, 0}}
+g1 /: jsOrder[g1, 0, 1, 0, 1, 1] := {{-1, 1, -1, 1, 1}, {-1, 0, -1, 0, 0}, 
+   {0, 1, 0, 1, 0}, {0, -1, 0, 0, 0}, {1, 0, 0, 0, 0}}
+g1 /: jsOrder[g1, 0, 1, 1, 1, 0] := {{-1, 1, 1, 1, -1}, {-1, 0, 0, 0, -1}, 
+   {0, 1, 0, 1, 0}, {0, -1, 0, 0, 0}, {1, 0, 0, 0, 0}}
+g1 /: jsOrder[g1, 0, 1, 1, 1, 1] := {{-1, 1, 1, 1, 1}, {-1, 0, 0, 0, 0}, 
+   {0, 1, 0, 1, 0}, {0, -1, 0, 0, 0}, {0, 0, -1, 0, 0}}
+g1 /: jsOrder[g1, 1, 0, 0, 1, 0] := {{1, -1, -1, 1, -1}, {0, -1, -1, 0, -1}, 
+   {-1, 0, 0, 0, 0}, {0, 1, 0, 0, 0}, {0, 0, 1, 0, 0}}
+g1 /: jsOrder[g1, 1, 0, 0, 1, 1] := {{1, -1, -1, 1, 1}, {0, -1, -1, 0, 0}, 
+   {1, 0, 0, 1, 0}, {-1, 0, 0, 0, 0}, {0, 1, 0, 0, 0}}
+g1 /: jsOrder[g1, 1, 0, 1, 1, 0] := {{1, -1, 1, 1, -1}, {0, -1, 0, 0, -1}, 
+   {1, 0, 0, 1, 0}, {-1, 0, 0, 0, 0}, {0, 1, 0, 0, 0}}
+g1 /: jsOrder[g1, 1, 0, 1, 1, 1] := {{1, -1, 1, 1, 1}, {0, -1, 0, 0, 0}, 
+   {1, 0, 0, 1, 0}, {-1, 0, 0, 0, 0}, {0, 0, -1, 0, 0}}
+g1 /: jsOrder[g1, 1, 1, 0, 0, 0] := {{1, 1, -1, -1, -1}, {0, 0, -1, -1, -1}, 
+   {-1, 0, 0, 0, 0}, {0, 0, 1, 0, 0}, {0, 0, 0, 1, 0}}
+g1 /: jsOrder[g1, 1, 1, 0, 0, 1] := {{1, 1, -1, -1, 1}, {0, 0, -1, -1, 0}, 
+   {1, 1, 0, 0, 0}, {-1, 0, 0, 0, 0}, {0, 0, 1, 0, 0}}
+g1 /: jsOrder[g1, 1, 1, 0, 1, 0] := {{1, 1, -1, 1, -1}, {0, 0, -1, 0, -1}, 
+   {-1, 0, 0, 0, 0}, {0, -1, 0, 0, 0}, {0, 0, 1, 0, 0}}
+g1 /: jsOrder[g1, 1, 1, 0, 1, 1] := {{1, 1, -1, 1, 1}, {0, 0, -1, 0, 0}, 
+   {1, 1, 0, 1, 0}, {-1, 0, 0, 0, 0}, {0, -1, 0, 0, 0}}
+g1 /: jsOrder[g1, 1, 1, 1, 0, 0] := {{1, 1, 1, -1, -1}, {0, 0, 0, -1, -1}, 
+   {1, 1, 0, 0, 0}, {-1, 0, 0, 0, 0}, {0, 0, 0, 1, 0}}
+g1 /: jsOrder[g1, 1, 1, 1, 0, 1] := {{1, 1, 1, -1, 1}, {0, 0, 0, -1, 0}, 
+   {1, 1, 0, 0, 0}, {-1, 0, 0, 0, 0}, {0, 0, -1, 0, 0}}
+g1 /: jsOrder[g1, 1, 1, 1, 1, 0] := {{1, 1, 1, 1, -1}, {0, 0, 0, 0, -1}, 
+   {1, 1, 0, 1, 0}, {-1, 0, 0, 0, 0}, {0, -1, 0, 0, 0}}
+g1 /: jsOrder[g1, 1, 1, 1, 1, 1] := {{1, 1, 1, 1, 1}, {1, 1, 0, 1, 0}, 
+   {-1, 0, 0, 0, 0}, {0, -1, 0, 0, 0}, {0, 0, -1, 0, 0}}
+g1 /: jSymmetries[g1, 1, 1, 0, 1, 0] := 
+  {{j[g1, (n1_)?Positive, (n2_)?Positive, (n3_)?NonPositive, (n4_)?Positive, 
+      (n5_)?NonPositive] :> Expand[j[g1, n1, n2, n3, n4, n5]]}}
+g1 /: jSymmetries[g1, 1, 1, 0, 1, 1] := 
+  {{j[g1, (n1_)?Positive, (n2_)?Positive, (n3_)?NonPositive, (n4_)?Positive, 
+      (n5_)?Positive] :> Expand[j[g1, n1, n2, n3, n4, n5]]}}
+g1 /: jSymmetries[g1, 1, 1, 1, 1, 0] := 
+  {{j[g1, (n1_)?Positive, (n2_)?Positive, (n3_)?Positive, (n4_)?Positive, 
+      (n5_)?NonPositive] :> Expand[j[g1, n1, n2, n3, n4, n5]]}}
+g1 /: jSymmetries[g1, 1, 1, 1, 1, 1] := 
+  {{j[g1, (n1_)?Positive, (n2_)?Positive, (n3_)?Positive, (n4_)?Positive, 
+      (n5_)?Positive] :> Expand[j[g1, n1, n2, n3, n4, n5]]}}
+g1 /: LI[g1] := {#5*(q11 - q1p3)*j[g1, -1 + #1, #2, #3, #4, 1 + #5] + 
+     #4*q11*j[g1, -1 + #1, #2, #3, 1 + #4, #5] + 
+     (#3*x2*j[g1, -1 + #1, #2, 1 + #3, #4, #5])/2 + 
+     #5*(q11 - 2*q1p3)*j[g1, #1, #2, #3, -1 + #4, 1 + #5] + 
+     (#4 - #5)*(q11 - q1p3)*j[g1, #1, #2, #3, #4, #5] - 
+     #5*(q11 - 2*q1p3)*q1p3*j[g1, #1, #2, #3, #4, 1 + #5] - 
+     #4*q11*j[g1, #1, #2, #3, 1 + #4, -1 + #5] - 
+     #4*q11*q1p3*j[g1, #1, #2, #3, 1 + #4, #5] - 
+     (#3*x2*j[g1, #1, #2, 1 + #3, #4, -1 + #5])/2 + 
+     (#3*(q11 - 2*q1p3)*x2*j[g1, #1, #2, 1 + #3, #4, #5])/2 - 
+     (#2*x1*j[g1, #1, 1 + #2, #3, -1 + #4, #5])/2 + 
+     (#2*q11*x1*j[g1, #1, 1 + #2, #3, #4, #5])/2, 
+    -(#5*x1*j[g1, -1 + #1, #2, #3, #4, 1 + #5]) + 
+     (#3*y*j[g1, -1 + #1, #2, 1 + #3, #4, #5])/2 + 
+     (#2*j[g1, -1 + #1, 1 + #2, #3, #4, #5])/2 - 
+     2*#5*q1p3*j[g1, #1, -1 + #2, #3, #4, 1 + #5] - 
+     2*#4*q1p3*j[g1, #1, -1 + #2, #3, 1 + #4, #5] - 
+     #3*x2*j[g1, #1, -1 + #2, 1 + #3, #4, #5] - 
+     #5*x1*j[g1, #1, #2, #3, -1 + #4, 1 + #5] - 
+     (#2 - #5)*x1*j[g1, #1, #2, #3, #4, #5] + 
+     2*#5*q1p3*x1*j[g1, #1, #2, #3, #4, 1 + #5] + 
+     (#3*y*j[g1, #1, #2, 1 + #3, -1 + #4, #5])/2 - 
+     (#3*y*j[g1, #1, #2, 1 + #3, #4, -1 + #5])/2 - 
+     #3*q1p3*y*j[g1, #1, #2, 1 + #3, #4, #5] + 
+     (#2*j[g1, #1, 1 + #2, #3, -1 + #4, #5])/2 - 
+     (#2*j[g1, #1, 1 + #2, #3, #4, -1 + #5])/2 - 
+     #2*q1p3*j[g1, #1, 1 + #2, #3, #4, #5], 
+    #4*x2*j[g1, -1 + #1, #2, #3, 1 + #4, #5] + 
+     (#3*j[g1, -1 + #1, #2, 1 + #3, #4, #5])/2 + 
+     (#2*y*j[g1, -1 + #1, 1 + #2, #3, #4, #5])/2 - 
+     2*#5*q1p3*j[g1, #1, #2, -1 + #3, #4, 1 + #5] - 
+     2*#4*q1p3*j[g1, #1, #2, -1 + #3, 1 + #4, #5] - 
+     (#3 - #4)*x2*j[g1, #1, #2, #3, #4, #5] - 
+     #4*x2*j[g1, #1, #2, #3, 1 + #4, -1 + #5] - 
+     2*#4*q1p3*x2*j[g1, #1, #2, #3, 1 + #4, #5] + 
+     (#3*j[g1, #1, #2, 1 + #3, -1 + #4, #5])/2 - 
+     (#3*j[g1, #1, #2, 1 + #3, #4, -1 + #5])/2 - 
+     #3*q1p3*j[g1, #1, #2, 1 + #3, #4, #5] - 
+     #2*x1*j[g1, #1, 1 + #2, -1 + #3, #4, #5] + 
+     (#2*y*j[g1, #1, 1 + #2, #3, -1 + #4, #5])/2 - 
+     (#2*y*j[g1, #1, 1 + #2, #3, #4, -1 + #5])/2 - 
+     #2*q1p3*y*j[g1, #1, 1 + #2, #3, #4, #5], 
+    -2*#5*(q11 - q1p3)*j[g1, #1, -1 + #2, #3, #4, 1 + #5] - 
+     2*#4*q11*j[g1, #1, -1 + #2, #3, 1 + #4, #5] - 
+     #3*x2*j[g1, #1, -1 + #2, 1 + #3, #4, #5] - 
+     #5*x1*j[g1, #1, #2, #3, -1 + #4, 1 + #5] + 
+     #5*q11*x1*j[g1, #1, #2, #3, #4, 1 + #5] + 
+     (#3*y*j[g1, #1, #2, 1 + #3, -1 + #4, #5])/2 - 
+     (#3*q11*y*j[g1, #1, #2, 1 + #3, #4, #5])/2 + 
+     (#2*j[g1, #1, 1 + #2, #3, -1 + #4, #5])/2 - 
+     (#2*q11*j[g1, #1, 1 + #2, #3, #4, #5])/2, 
+    -2*#5*(q11 - q1p3)*j[g1, #1, #2, -1 + #3, #4, 1 + #5] - 
+     2*#4*q11*j[g1, #1, #2, -1 + #3, 1 + #4, #5] - 
+     (#3 - #4)*x2*j[g1, #1, #2, #3, #4, #5] - 
+     #4*q11*x2*j[g1, #1, #2, #3, 1 + #4, #5] + 
+     (#3*j[g1, #1, #2, 1 + #3, -1 + #4, #5])/2 - 
+     (#3*q11*j[g1, #1, #2, 1 + #3, #4, #5])/2 + 
+     (#2*y*j[g1, #1, 1 + #2, #3, -1 + #4, #5])/2 - 
+     (#2*q11*y*j[g1, #1, 1 + #2, #3, #4, #5])/2, 
+    2*#4*x2*j[g1, #1, -1 + #2, #3, 1 + #4, #5] + 
+     #3*j[g1, #1, -1 + #2, 1 + #3, #4, #5] + 
+     2*#5*x1*j[g1, #1, #2, -1 + #3, #4, 1 + #5] + 
+     (#2 - #3)*y*j[g1, #1, #2, #3, #4, #5] - 
+     #2*j[g1, #1, 1 + #2, -1 + #3, #4, #5]} & 
+g1 /: LMs[g1] := {l1}
+g1 /: MappedSectors[g1] := {}
+g1 /: MIs[g1] := {j[g1, 1, 1, 0, 1, 0], j[g1, 1, 1, 0, 1, 1], 
+   j[g1, 1, 1, 1, 1, 0], j[g1, 1, 1, 1, 1, 1]}
+g1 /: NDs[g1] := 5
+g1 /: NonZeroSectors[g1] := {js[g1, 1, 1, 0, 1, 0], js[g1, 1, 1, 0, 1, 1], 
+   js[g1, 1, 1, 1, 1, 0], js[g1, 1, 1, 1, 1, 1]}
+g1 /: Parameters[g1] := {d, q11, q1p3, x1, x2, y}
+g1 /: PowerShifts[g1] := {0, 0, 0, 0, 0}
+g1 /: SectorsMappings[g1] := {}
+g1 /: SectorsPattern[g1] := {___}
+g1 /: SimpleSectors[g1] := {js[g1, 1, 1, 0, 1, 0]}
+g1 /: SPs[g1] := {sp[l1, l1], sp[l1, p3], sp[l1, q1], sp[l1, v1], sp[l1, v2]}
+g1 /: SR[g1] := Get[StringJoin[BasisDirectory[g1], "/SR[g1]"]]
+g1 /: Toj[g1] := {sp[l1, l1] -> j[g1, -1, 0, 0, 0, 0], 
+   sp[l1, p3] -> (-2*q1p3 + j[g1, -1, 0, 0, 0, 0] + j[g1, 0, 0, 0, -1, 0] - 
+      j[g1, 0, 0, 0, 0, -1])/2, sp[l1, q1] -> 
+    -1/2*q11 + j[g1, 0, 0, 0, -1, 0]/2, sp[l1, v1] -> j[g1, 0, -1, 0, 0, 0], 
+   sp[l1, v2] -> j[g1, 0, 0, -1, 0, 0]}
+g1 /: UniqueSectors[g1] := {js[g1, 1, 1, 0, 1, 0], js[g1, 1, 1, 0, 1, 1], 
+   js[g1, 1, 1, 1, 1, 0], js[g1, 1, 1, 1, 1, 1]}
+g1 /: ZerojRule[g1] := LiteRed`Private`jjj:j[g1, __] :> 
+   0 /; Module[{LiteRed`Private`jjs = 
+       Rest[List @@ jSector[LiteRed`Private`jjj]]}, 
+     Or @@ (BitOr[LiteRed`Private`jjs, #1] === #1 & ) /@ 
+       {{1, 1, 1, 0, 1}, {1, 0, 1, 1, 1}, {0, 1, 1, 1, 1}}]
+g1 /: ZeroSectors[g1] := {js[g1, 0, 0, 0, 0, 0], js[g1, 0, 0, 0, 0, 1], 
+   js[g1, 0, 0, 0, 1, 0], js[g1, 0, 0, 1, 0, 0], js[g1, 0, 1, 0, 0, 0], 
+   js[g1, 1, 0, 0, 0, 0], js[g1, 0, 0, 0, 1, 1], js[g1, 0, 0, 1, 0, 1], 
+   js[g1, 0, 0, 1, 1, 0], js[g1, 0, 1, 0, 0, 1], js[g1, 0, 1, 0, 1, 0], 
+   js[g1, 0, 1, 1, 0, 0], js[g1, 1, 0, 0, 0, 1], js[g1, 1, 0, 0, 1, 0], 
+   js[g1, 1, 0, 1, 0, 0], js[g1, 1, 1, 0, 0, 0], js[g1, 0, 0, 1, 1, 1], 
+   js[g1, 0, 1, 0, 1, 1], js[g1, 0, 1, 1, 0, 1], js[g1, 0, 1, 1, 1, 0], 
+   js[g1, 1, 0, 0, 1, 1], js[g1, 1, 0, 1, 0, 1], js[g1, 1, 0, 1, 1, 0], 
+   js[g1, 1, 1, 0, 0, 1], js[g1, 1, 1, 1, 0, 0], js[g1, 0, 1, 1, 1, 1], 
+   js[g1, 1, 0, 1, 1, 1], js[g1, 1, 1, 1, 0, 1]}
+g1 /: SectorsMappings[g1, LiteRed`Private`ns$:(0 | 1)..] := 
+  Cases[SectorsMappings[g1], HoldPattern[js[g1, LiteRed`Private`ns$] -> _]]
+g1::usage = "1-loop basis with 4 external momenta.\nUse Information[g1] to \
+get basis summary.\nThis string can be redefined by setting \
+g1::usage=\"\[Ellipsis]\""; Information[g1, LongForm -> False]; 
+LiteRed`Private`CheckDefs[g1]
+BasisDirectory[g1]
