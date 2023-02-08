@@ -1,0 +1,2 @@
+{{j[basis, (n1_)?Positive, (n2_)?Positive, (n3_)?NonPositive, 
+    (n4_)?Positive] :> Expand[j[basis, n1, n2, n3, n4]]}}

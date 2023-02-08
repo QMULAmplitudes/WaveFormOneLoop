@@ -1,0 +1,20 @@
+Last[{{{1, -1, 1, 1, -1}, {0, -1, 0, 0, -1}, {-1, 0, 0, 0, 0}, 
+   {0, 0, -1, 0, 0}, {0, 1, 0, 0, 0}}, 
+  {j[basis, (n1_)?Positive, (n2_)?NonPositive, (n3_)?Positive, 
+      (n4_)?Positive, (n5_)?NonPositive] /; True :> 
+    (n5*w2*j[basis, -1 + n1, n2, n3, n4, 1 + n5])/
+      ((-d + n2 + 2*n3 + 2*n4 + n5)*qq1 + (d - n2 - 2*n3 - 2*n4 - n5)*qq2) + 
+     (n2*w1*j[basis, -1 + n1, 1 + n2, n3, n4, n5])/
+      ((-d + n2 + 2*n3 + 2*n4 + n5)*qq1 + (d - n2 - 2*n3 - 2*n4 - n5)*qq2) - 
+     (n5*w2*j[basis, n1, n2, n3, -1 + n4, 1 + n5])/
+      ((-d + n2 + 2*n3 + 2*n4 + n5)*qq1 + (d - n2 - 2*n3 - 2*n4 - n5)*qq2) + 
+     (n5*qq2*w2*j[basis, n1, n2, n3, n4, 1 + n5])/
+      ((-d + n2 + 2*n3 + 2*n4 + n5)*qq1 + (d - n2 - 2*n3 - 2*n4 - n5)*qq2) - 
+     (n2*w1*j[basis, n1, 1 + n2, -1 + n3, n4, n5])/
+      ((-d + n2 + 2*n3 + 2*n4 + n5)*qq1 + (d - n2 - 2*n3 - 2*n4 - n5)*qq2) + 
+     (n2*qq1*w1*j[basis, n1, 1 + n2, n3, n4, n5])/
+      ((-d + n2 + 2*n3 + 2*n4 + n5)*qq1 + (d - n2 - 2*n3 - 2*n4 - n5)*qq2) + 
+     (2*n1*qq2*j[basis, 1 + n1, n2, -1 + n3, n4, n5])/
+      ((-d + n2 + 2*n3 + 2*n4 + n5)*qq1 + (d - n2 - 2*n3 - 2*n4 - n5)*qq2) - 
+     (2*n1*qq1*j[basis, 1 + n1, n2, n3, -1 + n4, n5])/
+      ((-d + n2 + 2*n3 + 2*n4 + n5)*qq1 + (d - n2 - 2*n3 - 2*n4 - n5)*qq2)}}]

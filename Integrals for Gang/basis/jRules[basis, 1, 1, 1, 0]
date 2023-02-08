@@ -1,0 +1,31 @@
+Last[{{{1, 1, 1, -1}, {0, 0, 0, -1}, {0, 1, 0, 0}, {-1, 0, 0, 0}}, 
+  {j[basis, (n1_)?Positive, (n2_)?Positive, (n3_)?Positive, 
+      (n4_)?NonPositive] /; n2 != 1 :> 
+    (n4*w1*j[basis, n1, -1 + n2, n3, 1 + n4])/(2*(-1 + n2)) + 
+     (n4*qq2*j[basis, 1 + n1, -2 + n2, n3, 1 + n4])/(2*(-1 + n2)) + 
+     (n3*qq1*j[basis, 1 + n1, -2 + n2, 1 + n3, n4])/(2*(-1 + n2)) - 
+     (n4*w1*j[basis, 1 + n1, -1 + n2, -1 + n3, 1 + n4])/(2*(-1 + n2)) + 
+     j[basis, 1 + n1, n2, -1 + n3, n4] - 
+     ((1 + n1)*qq1*j[basis, 2 + n1, -2 + n2, n3, n4])/(2*(-1 + n2)), 
+   j[basis, (n1_)?Positive, (n2_)?Positive, (n3_)?Positive, 
+      (n4_)?NonPositive] /; n2 == 1 && n1 != 1 :> 
+    -((n4*j[basis, -1 + n1, 1, -1 + n3, 1 + n4])/((-1 + n1)*qq1)) + 
+     ((d - n1 - 2*n3 - n4)*j[basis, -1 + n1, 1, n3, n4])/((-1 + n1)*qq1) - 
+     j[basis, n1, 1, -1 + n3, n4]/qq1, 
+   j[basis, (n1_)?Positive, (n2_)?Positive, (n3_)?Positive, 
+      (n4_)?NonPositive] /; n1 == 1 && n2 == 1 && n3 != 1 :> 
+    -((n4*j[basis, 0, 1, -1 + n3, 1 + n4])/((-1 + n3)*qq1)) - 
+     j[basis, 0, 1, n3, n4]/qq1 + ((-2 + d - n3 - n4)*j[basis, 1, 1, -1 + n3, 
+        n4])/((-1 + n3)*qq1) - (n4*qq2*j[basis, 1, 1, -1 + n3, 1 + n4])/
+      ((-1 + n3)*qq1), j[basis, (n1_)?Positive, (n2_)?Positive, 
+      (n3_)?Positive, (n4_)?NonPositive] /; n1 == 1 && n2 == 1 && n3 == 1 && 
+      n4 != 0 :> ((1 + n4)*w1^2*j[basis, 0, 1, 1, 2 + n4])/
+      (-16 + 4*d - 4*n4) + (((-1 - n4)*qq1 + (1 + n4)*qq2)*w1*
+       j[basis, 1, 0, 1, 2 + n4])/(-16 + 4*d - 4*n4) + 
+     (n4*j[basis, 1, 1, 0, 1 + n4])/(-4 + d - n4) + 
+     ((-1 - n4)*w1^2*j[basis, 1, 1, 0, 2 + n4])/(-16 + 4*d - 4*n4) + 
+     (((-5 + d - 2*n4)*qq1 + (5 - d + 2*n4)*qq2)*j[basis, 1, 1, 1, 1 + n4])/
+      (-8 + 2*d - 2*n4) + ((1 + n4)*qq1*w1^2*j[basis, 1, 1, 1, 2 + n4])/
+      (-16 + 4*d - 4*n4) - (qq1*w1*j[basis, 2, 0, 1, 1 + n4])/
+      (-8 + 2*d - 2*n4) + j[basis, 2, 1, 0, n4]/(-4 + d - n4) + 
+     (qq2*j[basis, 2, 1, 0, 1 + n4])/(-4 + d - n4)}}]

@@ -1,0 +1,66 @@
+Last[{{{-1, 1, 1, 1, -1}, {-1, 0, 0, 0, -1}, {0, 1, 0, 0, 0}, 
+   {0, 0, -1, 0, 0}, {1, 0, 0, 0, 0}}, 
+  {j[basis, (n1_)?NonPositive, (n2_)?Positive, (n3_)?Positive, 
+      (n4_)?Positive, (n5_)?NonPositive] /; n5 != 0 :> 
+    ((1 + n5)*(w1^2 + w2^2 - 2*w1*w2*y)*j[basis, -2 + n1, n2, n3, n4, 
+        2 + n5])/((-1 + n1)*(qq1^2 - 2*qq1*qq2 + qq2^2 - 4*qq1*w1^2)) - 
+     ((1 + n5)*(qq1*w1 - qq2*w1 + 2*w1*w2^2 - qq1*w2*y + qq2*w2*y)*
+       j[basis, -1 + n1, -1 + n2, n3, n4, 2 + n5])/
+      ((-1 + n1)*(qq1^2 - 2*qq1*qq2 + qq2^2 - 4*qq1*w1^2)) - 
+     ((1 + n5)*(-qq1 + qq2 + 2*w1^2 - 2*w1*w2*y + qq1*y^2 - qq2*y^2)*
+       j[basis, -1 + n1, n2, -1 + n3, n4, 2 + n5])/
+      (2*(-1 + n1)*(qq1^2 - 2*qq1*qq2 + qq2^2 - 4*qq1*w1^2)) + 
+     ((1 + n5)*(-qq1 + qq2 - 2*w2^2 + 2*w1*w2*y + qq1*y^2 - qq2*y^2)*
+       j[basis, -1 + n1, n2, n3, -1 + n4, 2 + n5])/
+      (2*(-1 + n1)*(qq1^2 - 2*qq1*qq2 + qq2^2 - 4*qq1*w1^2)) - 
+     ((-2 + n1 - n5)*(-(qq1*w2) + qq2*w2 + 2*w1^2*w2 + qq1*w1*y - qq2*w1*y)*
+       j[basis, -1 + n1, n2, n3, n4, 1 + n5])/
+      ((-1 + n1)*(qq1^2 - 2*qq1*qq2 + qq2^2 - 4*qq1*w1^2)) + 
+     ((1 + n5)*(qq1*w1^2 + qq2*w2^2 + 2*w1^2*w2^2 - qq1*w1*w2*y - 
+        qq2*w1*w2*y)*j[basis, -1 + n1, n2, n3, n4, 2 + n5])/
+      ((-1 + n1)*(qq1^2 - 2*qq1*qq2 + qq2^2 - 4*qq1*w1^2)) + 
+     ((-2*qq1*w1*w2 - 2*qq2*w1*w2 + qq1^2*y - 2*qq1*qq2*y + qq2^2*y)*
+       j[basis, n1, -1 + n2, n3, n4, 1 + n5])/(qq1^2 - 2*qq1*qq2 + qq2^2 - 
+       4*qq1*w1^2) + ((2*qq2*w2 + 2*w1^2*w2 - qq1*w1*y - qq2*w1*y)*
+       j[basis, n1, n2, -1 + n3, n4, 1 + n5])/(qq1^2 - 2*qq1*qq2 + qq2^2 - 
+       4*qq1*w1^2) + ((-(qq1*w2) - qq2*w2 + 2*qq1*w1*y)*
+       j[basis, n1, n2, n3, -1 + n4, 1 + n5])/(qq1^2 - 2*qq1*qq2 + qq2^2 - 
+       4*qq1*w1^2) + ((qq1*qq2*w2 - qq2^2*w2 + 2*qq1*w1^2*w2 - qq1^2*w1*y + 
+        qq1*qq2*w1*y)*j[basis, n1, n2, n3, n4, 1 + n5])/
+      (qq1^2 - 2*qq1*qq2 + qq2^2 - 4*qq1*w1^2), 
+   j[basis, (n1_)?NonPositive, (n2_)?Positive, (n3_)?Positive, 
+      (n4_)?Positive, (n5_)?NonPositive] /; n5 == 0 && n4 != 1 :> 
+    ((-1 + d - n1 - n2 - 2*n3 - n4)*j[basis, n1, n2, 1 + n3, -1 + n4, 0])/
+      (-1 + n4) - (n1*j[basis, 1 + n1, n2, n3, -1 + n4, 0])/(-1 + n4) - 
+     (n1*qq1*j[basis, 1 + n1, n2, 1 + n3, -1 + n4, 0])/(-1 + n4), 
+   j[basis, (n1_)?NonPositive, (n2_)?Positive, (n3_)?Positive, 
+      (n4_)?Positive, (n5_)?NonPositive] /; n4 == 1 && n5 == 0 && n2 != 1 :> 
+    (2*(-4 + d - n1 - 2*n3)*w1*j[basis, n1, -1 + n2, 1 + n3, 1, 0])/
+      (-1 + n2) + j[basis, n1, n2, 1 + n3, 0, 0] + 
+     (2*n1*(qq1 - qq2)*j[basis, 1 + n1, -2 + n2, 1 + n3, 1, 0])/(-1 + n2) - 
+     (2*n1*w1*j[basis, 1 + n1, -1 + n2, n3, 1, 0])/(-1 + n2) - 
+     (2*n1*qq1*w1*j[basis, 1 + n1, -1 + n2, 1 + n3, 1, 0])/(-1 + n2), 
+   j[basis, (n1_)?NonPositive, (n2_)?Positive, (n3_)?Positive, 
+      (n4_)?Positive, (n5_)?NonPositive] /; n2 == 1 && n4 == 1 && n5 == 0 && 
+       !(n1 == 0 || n3 == 1) :> ((qq1 - qq2)*j[basis, 1 + n1, 0, n3, 1, 0])/
+      w1 - ((2 + n1 - n3)*(-qq1 + qq2 + 2*w1^2)*j[basis, 1 + n1, 1, -1 + n3, 
+        1, 0])/(2*(-1 + n3)*w1^2) + 
+     ((qq1 - qq2)*j[basis, 1 + n1, 1, n3, 0, 0])/(2*w1^2) - 
+     qq1*j[basis, 1 + n1, 1, n3, 1, 0] - 
+     ((1 + n1)*(qq1 + qq2)*j[basis, 2 + n1, 0, -1 + n3, 1, 0])/
+      ((-1 + n3)*w1) + ((1 + n1)*(qq2 + w1^2)*j[basis, 2 + n1, 1, -2 + n3, 1, 
+        0])/((-1 + n3)*w1^2) - ((1 + n1)*(qq1 + qq2)*j[basis, 2 + n1, 1, 
+        -1 + n3, 0, 0])/(2*(-1 + n3)*w1^2) + 
+     ((1 + n1)*(qq1*qq2 - qq2^2 + 2*qq1*w1^2)*j[basis, 2 + n1, 1, -1 + n3, 1, 
+        0])/(2*(-1 + n3)*w1^2), 
+   j[basis, (n1_)?NonPositive, (n2_)?Positive, (n3_)?Positive, 
+      (n4_)?Positive, (n5_)?NonPositive] /; n1 == 0 && n2 == 1 && n4 == 1 && 
+      n5 == 0 :> j[basis, 0, 0, -1 + n3, 2, 0]/((-2 + d - 2*n3)*w1) + 
+     ((-1 + n3)*j[basis, 0, 0, n3, 1, 0])/((-2 + d - 2*n3)*w1) + 
+     ((2 - d + n3)*j[basis, 0, 1, -1 + n3, 1, 0])/(2*(-2 + d - 2*n3)*w1^2) + 
+     ((-1 + n3)*j[basis, 0, 1, n3, 0, 0])/(2*(-2 + d - 2*n3)*w1^2), 
+   j[basis, (n1_)?NonPositive, (n2_)?Positive, (n3_)?Positive, 
+      (n4_)?Positive, (n5_)?NonPositive] /; n2 == 1 && n3 == 1 && n4 == 1 && 
+      n5 == 0 :> j[basis, n1, 1, 0, 2, 0]/(-4 + d - n1) - 
+     (n1*j[basis, 1 + n1, 1, 0, 1, 0])/(4 - d + n1) - 
+     (n1*qq1*j[basis, 1 + n1, 1, 1, 1, 0])/(4 - d + n1)}}]
